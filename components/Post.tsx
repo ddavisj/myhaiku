@@ -9,7 +9,10 @@ export type PostProps = {
     name: string;
     email: string;
   } | null;
-  content: string;
+  // content: string;
+  line1: string;
+  line2: string;
+  line3: string;
   published: boolean;
 };
 
@@ -19,7 +22,7 @@ const Post: React.FC<{ post: PostProps }> = ({ post }) => {
     <div onClick={() => Router.push("/p/[id]", `/p/${post.id}`)}>
       <h2>{post.title}</h2>
       <small>By {authorName}</small>
-      <ReactMarkdown children={post.content} />
+      {/* <ReactMarkdown children={post.content} /> */}
       <style jsx>{`
         div {
           color: inherit;
