@@ -1,7 +1,7 @@
 {
-  "name": "hello-next",
+  "name": "myhaiku",
   "version": "1.0.0",
-  "description": "",
+  "description": "Create and share haiku",
   "scripts": {
     "dev": "next",
     "build": "prisma generate && next build",

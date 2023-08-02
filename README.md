@@ -1,3 +1,5 @@
-# Fullstack Authentication Example with Next.js and NextAuth.js
+# Introduction
 
-This is the starter project for the fullstack tutorial with Next.js and Prisma. You can find the final version of this project in the [`final`](https://github.com/prisma/blogr-nextjs-prisma/tree/final) branch of this repo.
+An app to allow users to sign in and create and share haiku with others.
+
+User NextJS, Prisma and PostgreSQL.
