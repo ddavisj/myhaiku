@@ -7,7 +7,7 @@ import { useSession } from "next-auth/react";
 
 import Layout from "../../components/Layout";
 import { PostProps } from "../../components/Post";
-import Post from "../../components/Post";
+// import Post from "../../components/Post";
 
 import prisma from "../../lib/prisma";
 
@@ -28,7 +28,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   };
 };
 
-const Post: React.FC<PostProps> = (props) => {
+const Edit: React.FC<PostProps> = (props) => {
   let {
     title: oldTitle,
     line1: oldLine1,
@@ -57,9 +57,6 @@ const Post: React.FC<PostProps> = (props) => {
         line3 !== oldLine3
       ) {
         update_button.disabled = false;
-        console.log("YOU CAN UPDATE!");
-      } else {
-        console.log("CANNOT UPDATE");
       }
     }
   }, [title, line1, line2, line3]);
@@ -94,43 +91,65 @@ const Post: React.FC<PostProps> = (props) => {
       <Layout>
         <div>
           <form onSubmit={submitData}>
-            <h2>Editing:</h2>
-            <h3>{heading}</h3>
-            <input
-              autoFocus
-              className="w-full p-2 my-2 rounded border-2 border-solid border-gray-300"
-              onChange={(e) => setTitle(e.target.value)}
-              placeholder="Title"
-              type="text"
-              value={title}
-            />
-            <input
-              autoFocus
-              className="w-full p-2 my-2 rounded border-2 border-solid border-gray-300"
-              onChange={(e) => setLine1(e.target.value)}
-              placeholder="Line 1"
-              type="text"
-              value={line1}
-            />
-            <input
-              autoFocus
-              className="w-full p-2 my-2 rounded border-2 border-solid border-gray-300"
-              onChange={(e) => setLine2(e.target.value)}
-              placeholder="Line 2"
-              type="text"
-              value={line2}
-            />
-            <input
-              autoFocus
-              className="w-full p-2 my-2 rounded border-2 border-solid border-gray-300"
-              onChange={(e) => setLine3(e.target.value)}
-              placeholder="Line 3"
-              type="text"
-              value={line3}
-            />
+            <div className="mb-10">
+              <span className="active-item">Editing</span>
+            </div>
+            <div>
+              <label
+                className="block tracking-wide text-sm font-bold"
+                htmlFor="title"
+              >
+                Title
+              </label>
+              <input
+                autoFocus
+                id="title"
+                className="w-full p-2 my-2 rounded border-2 border-solid border-gray-300"
+                onChange={(e) => setTitle(e.target.value)}
+                placeholder="Title"
+                type="text"
+                value={title}
+              />
+            </div>
+            <div>
+              <label
+                className="block tracking-wide text-sm font-bold mt-4"
+                htmlFor="first_name"
+              >
+                Content
+              </label>
+              <input
+                id="line1"
+                className="w-full p-2 my-2 rounded border-2 border-solid border-gray-300"
+                onChange={(e) => setLine1(e.target.value)}
+                placeholder="Line 1 (5 syllables)"
+                type="text"
+                value={line1}
+              />
+            </div>
+            <div>
+              <input
+                autoFocus
+                className="w-full p-2 my-2 rounded border-2 border-solid border-gray-300"
+                onChange={(e) => setLine2(e.target.value)}
+                placeholder="Line 2 (7 syllables)"
+                type="text"
+                value={line2}
+              />
+            </div>
+            <div>
+              <input
+                autoFocus
+                className="w-full p-2 my-2 rounded border-2 border-solid border-gray-300"
+                onChange={(e) => setLine3(e.target.value)}
+                placeholder="Line 3 (5 syllables)"
+                type="text"
+                value={line3}
+              />
+            </div>
             <div className="flex flex-wrap justify-between items-center mt-2">
               <input
-                className="btn-regular"
+                className="btn-regular disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none disabled:cursor-not-allowed"
                 id="update_button"
                 type="submit"
                 value="Update"
@@ -156,4 +175,4 @@ const Post: React.FC<PostProps> = (props) => {
   }
 };
 
-export default Post;
+export default Edit;

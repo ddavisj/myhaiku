@@ -61,8 +61,7 @@ const Draft: React.FC = () => {
           />
           <div className="mt-2 flex flex-wrap justify-between items-center">
             <input
-              className="btn-regular
-              disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none disabled:cursor-not-allowed"
+              className="btn-regular disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none disabled:cursor-not-allowed"
               disabled={!title || !line1 || !line2 || !line3}
               type="submit"
               value="Create"
