@@ -3,7 +3,7 @@ import prisma from "../../../lib/prisma";
 
 // POST /api/post
 // Required fields in body: title
-// Optional fields in body: content
+// Optional fields in body: line1, line2, line3
 export default async function handle(req, res) {
   const { title, line1, line2, line3 } = req.body;
 

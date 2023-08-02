@@ -1,50 +1,45 @@
 import React, { ReactNode } from "react";
+import { useSession } from "next-auth/react";
+import Image from "next/image";
+
 import Header from "./Header";
+import Navigation from "./Navigation";
+import Device from "./Device";
 
 type Props = {
   children: ReactNode;
 };
 
-const Layout: React.FC<Props> = (props) => (
-  <div>
-    <Header />
-    <div className="layout">{props.children}</div>
-    <style jsx global>{`
-      html {
-        box-sizing: border-box;
-      }
+const Layout: React.FC<Props> = (props) => {
+  const { data: session } = useSession();
 
-      *,
-      *:before,
-      *:after {
-        box-sizing: inherit;
-      }
+  const imageStyle = {
+    borderRadius: "50%",
+    border: "1px solid #fff",
+  };
 
-      body {
-        margin: 0;
-        padding: 0;
-        font-size: 16px;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-          "Segoe UI Symbol";
-        background: rgba(0, 0, 0, 0.05);
-      }
+  interface imageStyle {
+    borderRadius: string;
+    border: string;
+  }
 
-      input,
-      textarea {
-        font-size: 16px;
-      }
-
-      button {
-        cursor: pointer;
-      }
-    `}</style>
-    <style jsx>{`
-      .layout {
-        padding: 0 2rem;
-      }
-    `}</style>
-  </div>
-);
+  return (
+    <Device>
+      <div className="layout-wrapper">
+        <Image
+          src="/images/myhaiku-bg.jpg"
+          alt="Nature vibes"
+          objectFit="cover"
+          layout="fill"
+        />
+        <div className="layout-content">
+          <Header />
+          {session ? <Navigation /> : ""}
+          <div className="py-0 px-8">{props.children}</div>
+        </div>
+      </div>
+    </Device>
+  );
+};
 
 export default Layout;

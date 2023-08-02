@@ -1,3 +1,72 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* TW Apply */
+
+.btn-nobg {
+  @apply cursor-pointer px-4 py-2 font-semibold text-sm text-white rounded shadow-sm;
+}
+
+.btn-regular {
+  @apply cursor-pointer px-4 py-2 font-semibold text-sm bg-sky-500 text-white rounded shadow-sm;
+}
+
+.btn-warning {
+  @apply cursor-pointer px-4 py-2 font-semibold text-sm bg-red-600 text-white rounded shadow-sm;
+}
+
+/* My Custom CSS */
+.layout-wrapper {
+  z-index: 0;
+  /* background-repeat: repeat-y; */
+  /* position: absolute; */
+  /* top: 0;
+  left: 0; */
+  /* width: 100%; */
+  /* height: 100vh; */
+}
+
+.layout-content {
+  position: relative;
+  z-index: 1;
+}
+
+.menu [data-active="true"] {
+  @apply active-item;
+}
+
+.active-item {
+  font-weight: 700;
+  padding-bottom: 10px;
+  border-bottom: 4px solid black;
+}
+
+/* From template */
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background: rgba(0, 0, 0, 0.05);
+}
+
+input,
+textarea {
+  font-size: 16px;
+}
+
+button {
+  cursor: pointer;
+}

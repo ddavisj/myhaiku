@@ -24,11 +24,11 @@ type Props = {
   feed: PostProps[];
 };
 
-const Blog: React.FC<Props> = (props) => {
+const AllHaiku: React.FC<Props> = (props) => {
   return (
     <Layout>
-      <div className="page">
-        <h1>Public Feed</h1>
+      <div className="page mb-6">
+        {/* <h2 className="mb-6 font-bold">All Haiku</h2> */}
         <main>
           {props.feed.map((post) => (
             <div key={post.id} className="post">
@@ -37,22 +37,8 @@ const Blog: React.FC<Props> = (props) => {
           ))}
         </main>
       </div>
-      {/* <style jsx>{`
-        .post {
-          background: white;
-          transition: box-shadow 0.1s ease-in;
-        }
-
-        .post:hover {
-          box-shadow: 1px 1px 3px #aaa;
-        }
-
-        .post + .post {
-          margin-top: 2rem;
-        }
-      `}</style> */}
     </Layout>
   );
 };
 
-export default Blog;
+export default AllHaiku;
