@@ -10,4 +10,4 @@ Feel free to login via Google and add your own haiku!
 - TypeScript, NextJS, SSR
 - Prisma ORM and CLI
 - NextAuth and Google authentication
-- Vercel site and PostgreSQL database hosting
+- Vercel hosted site and PostgreSQL database
