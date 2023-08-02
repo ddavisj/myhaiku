@@ -1,4 +1,4 @@
-# Introduction
+# About
 
 MyHaiku lets users create and share haiku. It's built with NextJS, TypeScript and Tailwind CSS.
 
