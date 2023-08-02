@@ -1,16 +1,23 @@
 import React from "react";
 import { GetServerSideProps } from "next";
+// import { GetStaticProps } from "next";
+
 import { useSession, getSession } from "next-auth/react";
 import Layout from "../components/Layout";
 import Post, { PostProps } from "../components/Post";
 import prisma from "../lib/prisma";
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  // export const getStaticProps: GetStaticProps = async ({ req, res }) => {
   const session = await getSession({ req });
   if (!session) {
     res.statusCode = 403;
+
+    console.log("NO DRAFTS");
     return { props: { drafts: [] } };
   }
+
+  console.log("DRAFTS EXIST!");
 
   const drafts = await prisma.post.findMany({
     where: {
