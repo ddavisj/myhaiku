@@ -37,7 +37,7 @@ const Blog: React.FC<Props> = (props) => {
           ))}
         </main>
       </div>
-      <style jsx>{`
+      {/* <style jsx>{`
         .post {
           background: white;
           transition: box-shadow 0.1s ease-in;
@@ -50,7 +50,7 @@ const Blog: React.FC<Props> = (props) => {
         .post + .post {
           margin-top: 2rem;
         }
-      `}</style>
+      `}</style> */}
     </Layout>
   );
 };
