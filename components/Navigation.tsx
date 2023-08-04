@@ -15,6 +15,7 @@ const Navigation: React.FC = () => {
   let left = null;
 
   if (status === "loading") {
+    console.log("LOADING");
     right = (
       <div className="ml-auto">
         <p>Loading...</p>

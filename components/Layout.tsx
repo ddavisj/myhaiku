@@ -25,14 +25,14 @@ const Layout: React.FC<Props> = (props) => {
 
   return (
     <Device>
-      <div className="layout-wrapper">
+      <div className="z-0 relative h-full">
         <Image
           src="/images/myhaiku-bg.jpg"
           alt="Nature vibes"
           objectFit="cover"
           layout="fill"
         />
-        <div className="layout-content">
+        <div className="relative z-10">
           <Header />
           {session ? <Navigation /> : ""}
           <div className="py-0 px-8">{props.children}</div>

@@ -12,12 +12,13 @@ const Draft: React.FC = () => {
     e.preventDefault();
     try {
       const body = { title, line1, line2, line3 };
-      await fetch("/api/post", {
+      const response = await fetch("/api/post", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
-      await Router.push("/drafts");
+      const { id } = await response.json();
+      Router.push(`/post/${id}`);
     } catch (error) {
       console.error(error);
     }

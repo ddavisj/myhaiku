@@ -1,6 +1,6 @@
 // View post
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { GetServerSideProps } from "next";
 import Router from "next/router";
 import { useSession } from "next-auth/react";
@@ -48,7 +48,7 @@ async function deletePost(id: string): Promise<void> {
 }
 
 const ViewItem: React.FC<PostProps> = (props) => {
-  const [published, setPublished] = useState(props.published);
+  const [publishedState, setPublished] = useState(props.published);
 
   const { data: session, status } = useSession();
   if (status === "loading") {
@@ -64,13 +64,13 @@ const ViewItem: React.FC<PostProps> = (props) => {
   return (
     <Layout>
       <div>
+        {!props.published &&
+          userHasValidSession &&
+          postBelongsToUser &&
+          !publishedState && (
+            <p className="mt-2 mb-2 font-bold">Post is not published.</p>
+          )}
         <Post post={props} />
-        {userHasValidSession && postBelongsToUser && !published && (
-          <p className="mt-2 mb-2 font-bold">Your post is not published.</p>
-        )}
-        {userHasValidSession && postBelongsToUser && published && (
-          <p className="mt-2 mb-2 font-bold">Your post is published.</p>
-        )}
         <div className="flex mt-6">
           {userHasValidSession && postBelongsToUser && (
             <button
@@ -80,29 +80,31 @@ const ViewItem: React.FC<PostProps> = (props) => {
               Edit
             </button>
           )}
-
-          {userHasValidSession && postBelongsToUser && !published && (
-            <button
-              className="btn-regular ml-4"
-              onClick={() => {
-                setPublished(true);
-                publishPost(props.id);
-              }}
-            >
-              Publish
-            </button>
-          )}
-          {userHasValidSession && postBelongsToUser && published && (
-            <button
-              className="btn-regular ml-4"
-              onClick={() => {
-                setPublished(false);
-                unPublishPost(props.id);
-              }}
-            >
-              Unpublish
-            </button>
-          )}
+          {!props.published &&
+            userHasValidSession &&
+            postBelongsToUser &&
+            !publishedState && (
+              <button
+                className="btn-regular ml-4"
+                onClick={() => {
+                  publishPost(props.id);
+                  setPublished(true);
+                }}
+              >
+                Publish
+              </button>
+            )}
+          {props.published &&
+            userHasValidSession &&
+            postBelongsToUser &&
+            publishedState && (
+              <button
+                className="btn-regular ml-4"
+                onClick={() => unPublishPost(props.id)}
+              >
+                Unpublish
+              </button>
+            )}
           <div className="ml-auto">
             {userHasValidSession && postBelongsToUser && (
               <button

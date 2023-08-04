@@ -10,12 +10,8 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const session = await getSession({ req });
   if (!session) {
     res.statusCode = 403;
-
-    console.log("NO DRAFTS");
     return { props: { drafts: [] } };
   }
-
-  console.log("DRAFTS EXIST!");
 
   const drafts = await prisma.post.findMany({
     where: {
@@ -43,7 +39,6 @@ const Drafts: React.FC<Props> = (props) => {
   if (!session) {
     return (
       <Layout>
-        {/* <h1>My Drafts</h1> */}
         <div>You need to be authenticated to view this page.</div>
       </Layout>
     );
@@ -52,7 +47,6 @@ const Drafts: React.FC<Props> = (props) => {
   return (
     <Layout>
       <div className="page">
-        {/* <h1 className="mb-6">My Drafts</h1> */}
         <main>
           {props.drafts.map((post) => (
             <div key={post.id}>
