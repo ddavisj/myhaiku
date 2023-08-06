@@ -32,7 +32,7 @@ const Layout: React.FC<Props> = (props) => {
           objectFit="cover"
           layout="fill"
         />
-        <div className="relative z-10">
+        <div className="relative z-10 mx-auto max-w-lg">
           <Header />
           {session ? <Navigation /> : ""}
           <div className="py-0 px-8">{props.children}</div>

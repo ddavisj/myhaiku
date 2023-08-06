@@ -12,7 +12,6 @@ export default async function handle(req, res) {
       line1,
       line2,
       line3,
-      published: true,
     },
   });
   res.json(post);

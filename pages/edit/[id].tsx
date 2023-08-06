@@ -65,12 +65,12 @@ const Edit: React.FC<PostProps> = (props) => {
     e.preventDefault();
     try {
       const body = { title, line1, line2, line3 };
-      await fetch(`/api/update/${id}`, {
+      const response = await fetch(`/api/update/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
-      await Router.push("/");
+      Router.push(`/post/${id}`);
     } catch (error) {
       console.error(error);
     }
