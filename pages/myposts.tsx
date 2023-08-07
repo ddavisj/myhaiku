@@ -50,7 +50,7 @@ const MyPosts: React.FC<Props> = (props) => {
         <main>
           {props.myposts.map((post) => (
             <div key={post.id}>
-              <Post post={post} />
+              <Post post={post} showPublished={true} />
             </div>
           ))}
         </main>

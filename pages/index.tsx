@@ -39,7 +39,7 @@ const AllHaiku: React.FC<Props> = (props) => {
 
           {props.feed.map((post) => (
             <div key={post.id} className="md:post md:w-3/4 mx-auto">
-              <Post post={post} />
+              <Post post={post} showPublished={false} />
             </div>
           ))}
         </main>

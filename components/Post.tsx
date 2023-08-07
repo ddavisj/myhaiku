@@ -15,8 +15,22 @@ export type PostProps = {
   published: boolean;
 };
 
-const Post: React.FC<{ post: PostProps }> = ({ post }) => {
+const Post: React.FC<{ post: PostProps }> = ({ post, showPublished }) => {
   const authorName = post.author ? post.author.name : "Unknown author";
+
+  console.log("post", post);
+  console.log("post-pub", post.published);
+
+  const renderPublished = () => {
+    if (showPublished) {
+      if (post.published) {
+        return <p>Published</p>;
+      } else {
+        return <p>Draft</p>;
+      }
+    }
+  };
+
   return (
     <div
       className="rounded p-8 text-white bg-black cursor-pointer shadow hover:shadow-lg transition-shadow mb-6"
@@ -28,6 +42,8 @@ const Post: React.FC<{ post: PostProps }> = ({ post }) => {
         <ReactMarkdown className="mt-3 text-base" children={post.line1} />
         <ReactMarkdown className="text-base" children={post.line2} />
         <ReactMarkdown className="text-base" children={post.line3} />
+        {/* <ReactMarkdown className="text-base" children={post.published} /> */}
+        <div className="mt-4 text-sm text-right">{renderPublished()}</div>
       </div>
     </div>
   );
