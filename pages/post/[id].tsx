@@ -44,7 +44,7 @@ async function deletePost(id: string): Promise<void> {
   await fetch(`/api/post/${id}`, {
     method: "DELETE",
   });
-  Router.push("/");
+  Router.push("/myposts");
 }
 
 const ViewItem: React.FC<PostProps> = (props) => {
@@ -54,8 +54,14 @@ const ViewItem: React.FC<PostProps> = (props) => {
   if (status === "loading") {
     return <div>Authenticating ...</div>;
   }
+
   const userHasValidSession = Boolean(session);
-  const postBelongsToUser = session?.user?.email === props.author?.email;
+
+  let postBelongsToUser = false;
+  postBelongsToUser =
+    session?.user?.email === props.author?.email ||
+    session?.user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+
   let title = props.title;
   if (!props.published) {
     title = `${title} (Draft)`;

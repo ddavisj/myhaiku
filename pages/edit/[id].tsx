@@ -81,9 +81,11 @@ const Edit: React.FC<PostProps> = (props) => {
   }
 
   const userHasValidSession = Boolean(session);
-  const postBelongsToUser = session?.user?.email === props.author?.email;
 
-  let heading: string = `${oldTitle}`;
+  let postBelongsToUser = false;
+  postBelongsToUser =
+    session?.user?.email === props.author?.email ||
+    session?.user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL;
 
   if (userHasValidSession && postBelongsToUser) {
     return (

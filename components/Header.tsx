@@ -49,6 +49,14 @@ const Header: React.FC = () => {
     );
   }
 
+  let userTitle;
+  if (session) {
+    userTitle =
+      session.user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL
+        ? `${session.user?.email} (ADMIN)`
+        : session.user?.email;
+  }
+
   if (session) {
     left = <div>{homeLink}</div>;
     right = (
@@ -56,7 +64,9 @@ const Header: React.FC = () => {
         <button onClick={() => signOut()}>
           <div className="flex items-center pointer">
             <ArrowRightOnRectangleIcon className="h-4 w-4" />
-            <a className="ml-2 text-sm">Log out</a>
+            <a className="ml-2 text-sm" title={userTitle}>
+              Log out
+            </a>
           </div>
         </button>
       </div>
