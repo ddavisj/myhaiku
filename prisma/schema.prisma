@@ -13,8 +13,6 @@ datasource db {
 
 model Post {
   number    Int        @default(autoincrement())
-  createdAt DateTime   @default(now()) @map(name: "created_at")
-  updatedAt DateTime?  @map(name: "updated_at")
   id        String  @id @default(cuid())
   title     String
   line1   String?

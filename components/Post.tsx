@@ -13,37 +13,25 @@ export type PostProps = {
   line2: string;
   line3: string;
   published: boolean;
+  number: number;
 };
 
-const Post: React.FC<{ post: PostProps }> = ({ post, showPublished }) => {
-  const authorName = post.author ? post.author.name : "Unknown author";
+const Post: React.FC<{ post: PostProps }> = ({ post }) => {
+  const { id, author, title, line1, line2, line3 } = post;
 
-  console.log("post", post);
-  console.log("post-pub", post.published);
-
-  const renderPublished = () => {
-    if (showPublished) {
-      if (post.published) {
-        return <p>Published</p>;
-      } else {
-        return <p>Draft</p>;
-      }
-    }
-  };
+  const authorName = author ? author.name : "Unknown author";
 
   return (
     <div
       className="rounded p-8 text-white bg-black cursor-pointer shadow hover:shadow-lg transition-shadow mb-6"
-      onClick={() => Router.push("/post/[id]", `/post/${post.id}`)}
+      onClick={() => Router.push("/post/[id]", `/post/${id}`)}
     >
       <div className="w-3/4 mx-auto">
-        <h2>{post.title}</h2>
+        <h2>{title}</h2>
         <small className="mb-4">by {authorName}</small>
-        <ReactMarkdown className="mt-3 text-base" children={post.line1} />
-        <ReactMarkdown className="text-base" children={post.line2} />
-        <ReactMarkdown className="text-base" children={post.line3} />
-        {/* <ReactMarkdown className="text-base" children={post.published} /> */}
-        <div className="mt-4 text-sm text-right">{renderPublished()}</div>
+        <ReactMarkdown className="mt-3 text-base" children={line1} />
+        <ReactMarkdown className="text-base" children={line2} />
+        <ReactMarkdown className="text-base" children={line3} />
       </div>
     </div>
   );

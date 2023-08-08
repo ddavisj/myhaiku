@@ -12,7 +12,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     return { props: { drafts: [] } };
   }
 
-  const myposts = await prisma.post.findMany({
+  const myPosts = await prisma.post.findMany({
     where: {
       author: { email: session.user.email },
     },
@@ -22,13 +22,14 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
       },
     },
   });
+
   return {
-    props: { myposts },
+    props: { myPosts },
   };
 };
 
 type Props = {
-  myposts: PostProps[];
+  myPosts: PostProps[];
 };
 
 const MyPosts: React.FC<Props> = (props) => {
@@ -37,22 +38,35 @@ const MyPosts: React.FC<Props> = (props) => {
   if (!session) {
     return (
       <Layout>
-        {/* <h1>My Posts</h1> */}
         <div>You need to be authenticated to view this page.</div>
       </Layout>
     );
   }
 
+  const myPublishedPosts = props.myPosts.filter((post) => !!post.published);
+  const myDrafts = props.myPosts.filter((post) => !post.published);
+
+  const renderPosts = (posts, title) => {
+    if (posts.length) {
+      return (
+        <>
+          <div className="font-bold mb-4 mt-6"> {title} </div>
+          {posts.map((post) => (
+            <div key={post.id}>
+              <Post post={post} />
+            </div>
+          ))}
+        </>
+      );
+    }
+  };
+
   return (
     <Layout>
       <div>
-        {/* <h1 className="mb-6 font-bold">My Posts</h1> */}
         <main>
-          {props.myposts.map((post) => (
-            <div key={post.id}>
-              <Post post={post} showPublished={true} />
-            </div>
-          ))}
+          {renderPosts(myDrafts, "Drafts")}
+          {renderPosts(myPublishedPosts, "Published")}
         </main>
       </div>
     </Layout>

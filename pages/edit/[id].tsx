@@ -4,12 +4,10 @@ import React, { useState, useEffect } from "react";
 import { GetServerSideProps } from "next";
 import Router from "next/router";
 import { useSession } from "next-auth/react";
+import prisma from "../../lib/prisma";
 
 import Layout from "../../components/Layout";
 import { PostProps } from "../../components/Post";
-// import Post from "../../components/Post";
-
-import prisma from "../../lib/prisma";
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const post = await prisma.post.findUnique({
@@ -29,6 +27,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 };
 
 const Edit: React.FC<PostProps> = (props) => {
+  // Rename old lines for comparison
   let {
     title: oldTitle,
     line1: oldLine1,

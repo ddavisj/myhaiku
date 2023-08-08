@@ -32,14 +32,14 @@ const AllHaiku: React.FC<Props> = (props) => {
         <main>
           <p className="mb-4">
             Haiku is a traditional Japanese form of poetry. Classical haiku have
-            3 lines of 5,7 and 5 syllables, include a seasonal reference and
-            capture a moment in time.
+            3 lines that consist of 5,7 and 5 syllables, include a seasonal
+            reference and capture a moment in time.
           </p>
           <h2 className="font-bold text-center mb-4">Recently Shared</h2>
 
           {props.feed.map((post) => (
             <div key={post.id} className="md:post md:w-3/4 mx-auto">
-              <Post post={post} showPublished={false} />
+              <Post post={post} />
             </div>
           ))}
         </main>

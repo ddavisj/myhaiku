@@ -15,7 +15,6 @@ const Navigation: React.FC = () => {
   let left = null;
 
   if (status === "loading") {
-    console.log("LOADING");
     right = (
       <div className="ml-auto">
         <p>Loading...</p>
@@ -32,11 +31,6 @@ const Navigation: React.FC = () => {
         <Link href="/myposts">
           <a className="ml-4" data-active={isActive("/myposts")}>
             My posts
-          </a>
-        </Link>
-        <Link href="/drafts">
-          <a className="ml-4" data-active={isActive("/drafts")}>
-            My drafts
           </a>
         </Link>
       </div>
