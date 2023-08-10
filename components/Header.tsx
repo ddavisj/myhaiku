@@ -38,7 +38,7 @@ const Header: React.FC = () => {
     right = (
       <div className="ml-auto">
         <Link href="/api/auth/signin">
-          <div className="flex items-center cursor-pointer">
+          <div className="flex items-center cursor-pointer link-main-hover">
             <ArrowRightOnRectangleIcon className="h-5 w-5" />
             <a className="ml-3" data-active={isActive("/signup")}>
               Log in
@@ -62,7 +62,7 @@ const Header: React.FC = () => {
     right = (
       <div className="ml-auto">
         <button onClick={() => signOut()}>
-          <div className="flex items-center pointer">
+          <div className="flex items-center pointer link-main-hover">
             <ArrowRightOnRectangleIcon className="h-4 w-4" />
             <a className="ml-2 text-sm" title={userTitle}>
               Log out

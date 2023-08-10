@@ -2,7 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Base */
+
+@layer base {
+  :root {
+    /* --mainhover: #1e40af; * blue, text-blue-800 */
+    /* --mainhover: orange; */
+    --mainhover: #008d73;
+  }
+}
+
 /* TW Apply */
+
+.link-main-hover {
+  @apply hover:text-[color:var(--mainhover)];
+}
+
+.btn-regular:hover {
+  @apply bg-sky-400;
+}
+
+.btn-warning:hover {
+  @apply bg-red-500;
+}
 
 .btn-nobg {
   @apply cursor-pointer px-4 py-2 font-semibold text-sm text-white rounded shadow-sm;
@@ -22,18 +44,26 @@
   @apply active-item;
 }
 
-html,
-body,
-#__next,
-.mobile,
-.wide {
-  height: 100%;
+.active-item:hover {
+  border-bottom: 4px solid var(--mainhover);
+}
+
+span.active-item:hover {
+  border-bottom: 4px solid black;
 }
 
 .active-item {
   font-weight: 700;
   padding-bottom: 10px;
   border-bottom: 4px solid black;
+}
+
+html,
+body,
+#__next,
+.mobile,
+.wide {
+  height: 100%;
 }
 
 /* From template */

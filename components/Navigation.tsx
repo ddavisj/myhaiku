@@ -26,10 +26,15 @@ const Navigation: React.FC = () => {
     left = (
       <div className="menu mr-auto">
         <Link href="/">
-          <a data-active={isActive("/")}>View all</a>
+          <a className="link-main-hover" data-active={isActive("/")}>
+            View all
+          </a>
         </Link>
         <Link href="/myposts">
-          <a className="ml-4" data-active={isActive("/myposts")}>
+          <a
+            className="ml-4 link-main-hover"
+            data-active={isActive("/myposts")}
+          >
             My posts
           </a>
         </Link>
@@ -38,7 +43,7 @@ const Navigation: React.FC = () => {
     right = (
       <div className="ml-auto">
         <Link href="/new">
-          <button className="btn-nobg bg-green-600">
+          <button className="btn-nobg bg-green-600 hover:bg-green-500">
             <div className="flex">
               <SparklesIcon className="text-white h-5 w-5 mr-2" />
               <a className="text-white">New</a>

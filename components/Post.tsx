@@ -23,7 +23,7 @@ const Post: React.FC<{ post: PostProps }> = ({ post }) => {
 
   return (
     <div
-      className="rounded p-8 text-white bg-black cursor-pointer shadow hover:shadow-lg transition-shadow mb-6"
+      className="rounded p-8 text-white bg-black cursor-pointer shadow hover:shadow-dark transition-shadow mb-6"
       onClick={() => Router.push("/post/[id]", `/post/${id}`)}
     >
       <div className="w-3/4 mx-auto">
